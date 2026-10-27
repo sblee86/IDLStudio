@@ -1,0 +1,48 @@
+{
+  "format": "atelier-icd",
+  "version": 2,
+  "name": "MIU_IDL",
+  "customTypes": [],
+  "outputFormats": [
+    {
+      "id": "preset_xml",
+      "name": "XML 기본 양식",
+      "extension": "xml",
+      "header": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<icd project=\"{{project.name|xml}}\">\n{{types.xml}}",
+      "upper": "  <struct name=\"{{struct.name|xml}}\" header=\"{{struct.isHeader}}\" size=\"{{struct.size}}\" description=\"{{struct.description|xml}}\">\n",
+      "body": "    <field name=\"{{field.name|xml}}\" type=\"{{field.type|xml}}\" count=\"{{field.count}}\" min=\"{{field.min|xml}}\" max=\"{{field.max|xml}}\" unit=\"{{field.unit|xml}}\" offset=\"{{field.offset}}\" description=\"{{field.description|xml}}\" />\n",
+      "lower": "  </struct>\n",
+      "footer": "</icd>\n"
+    },
+    {
+      "id": "preset_json",
+      "name": "JSON 기본 양식",
+      "extension": "json",
+      "header": "{\n  \"project\": {{project.name|json}},\n  \"types\": {{types.json}},\n  \"structures\": [\n",
+      "upper": "    {\n      \"name\": {{struct.name|json}},\n      \"description\": {{struct.description|json}},\n      \"isHeader\": {{struct.isHeader}},\n      \"size\": {{struct.size}},\n      \"fields\": [\n",
+      "body": "        {\"name\": {{field.name|json}}, \"type\": {{field.type|json}}, \"count\": {{field.count}}, \"min\": {{field.min|json}}, \"max\": {{field.max|json}}, \"unit\": {{field.unit|json}}, \"offset\": {{field.offset}}, \"description\": {{field.description|json}}}{{field.comma}}\n",
+      "lower": "      ]\n    }{{struct.comma}}\n",
+      "footer": "  ]\n}\n"
+    },
+    {
+      "id": "preset_h",
+      "name": "C++ 구조체 헤더 기본 양식",
+      "extension": "h",
+      "header": "#pragma once\n#include <cstdint>\n\n// Project: {{project.name|comment}}\n// Field offsets in ICD use packed lengths; C++ layout may include padding.\n{{types.declarations}}\n",
+      "upper": "// {{struct.description|comment}}\nstruct {{struct.name}}\n{\n",
+      "body": "    {{field.cppType}} {{field.name}}{{field.array}}; // 최소값: {{field.min|comment}}, 최대값: {{field.max|comment}}, 설명: {{field.description|comment}}\n",
+      "lower": "};\n\n",
+      "footer": "// End of {{project.name|comment}}\n"
+    }
+  ],
+  "structures": [
+    {
+      "id": "ec1b79e9bf4968814810dde14060f714",
+      "name": "NewStructure",
+      "description": "",
+      "isHeader": false,
+      "isType": true,
+      "fields": []
+    }
+  ]
+}

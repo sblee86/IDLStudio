@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<icd xmlns:NOM="urn:example:nom" project="NOM_Interaction_Demo">
+  <NOM:interaction name="MessageHeader" header="true" size="17" description="공통 메시지 헤더">
+    <field name="messageId" type="uint16" count="1" min="0" max="65535" unit="" offset="0" description="메시지 식별자" />
+    <field name="sequence" type="uint32" count="1" min="0" max="4294967295" unit="" offset="2" description="메시지 순서 번호" />
+    <field name="payloadLength" type="uint16" count="1" min="0" max="65535" unit="byte" offset="6" description="본문 데이터 길이" />
+    <field name="timestamp" type="uint64" count="1" min="0" max="" unit="ms" offset="8" description="메시지 생성 시각" />
+    <field name="version" type="uint8" count="1" min="0" max="255" unit="" offset="16" description="인터페이스 버전" />
+  </NOM:interaction>
+</icd>

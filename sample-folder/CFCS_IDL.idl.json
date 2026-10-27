@@ -1,0 +1,148 @@
+{
+  "format": "atelier-icd",
+  "version": 2,
+  "name": "CFCS_IDL",
+  "outputFormats": [
+    {
+      "id": "preset_xml",
+      "name": "XML 기본 양식",
+      "extension": "xml",
+      "header": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<icd project=\"{{project.name|xml}}\">\n{{types.xml}}",
+      "upper": "  <struct name=\"{{struct.name|xml}}\" header=\"{{struct.isHeader}}\" size=\"{{struct.size}}\" description=\"{{struct.description|xml}}\">\n",
+      "body": "    <field name=\"{{field.name|xml}}\" type=\"{{field.type|xml}}\" count=\"{{field.count}}\" min=\"{{field.min|xml}}\" max=\"{{field.max|xml}}\" unit=\"{{field.unit|xml}}\" offset=\"{{field.offset}}\" description=\"{{field.description|xml}}\" />\n",
+      "lower": "  </struct>\n",
+      "footer": "</icd>\n"
+    },
+    {
+      "id": "preset_json",
+      "name": "JSON 기본 양식",
+      "extension": "json",
+      "header": "{\n  \"project\": {{project.name|json}},\n  \"types\": {{types.json}},\n  \"structures\": [\n",
+      "upper": "    {\n      \"name\": {{struct.name|json}},\n      \"description\": {{struct.description|json}},\n      \"isHeader\": {{struct.isHeader}},\n      \"size\": {{struct.size}},\n      \"fields\": [\n",
+      "body": "        {\"name\": {{field.name|json}}, \"type\": {{field.type|json}}, \"count\": {{field.count}}, \"min\": {{field.min|json}}, \"max\": {{field.max|json}}, \"unit\": {{field.unit|json}}, \"offset\": {{field.offset}}, \"description\": {{field.description|json}}}{{field.comma}}\n",
+      "lower": "      ]\n    }{{struct.comma}}\n",
+      "footer": "  ]\n}\n"
+    },
+    {
+      "id": "preset_h",
+      "name": "C++ 구조체 헤더 기본 양식",
+      "extension": "h",
+      "header": "#pragma once\n#include <cstdint>\n\n// Project: {{project.name|comment}}\n// Field offsets in ICD use packed lengths; C++ layout may include padding.\n{{types.declarations}}\n",
+      "upper": "// {{struct.description|comment}}\nstruct {{struct.name}}\n{\n",
+      "body": "    {{field.cppType}} {{field.name}}{{field.array}}; // 최소값: {{field.min|comment}}, 최대값: {{field.max|comment}}, 설명: {{field.description|comment}}\n",
+      "lower": "};\n\n",
+      "footer": "// End of {{project.name|comment}}\n"
+    }
+  ],
+  "customTypes": [],
+  "structures": [
+    {
+      "id": "717907ba3e4e4ccd5fad86a822c1e7b9",
+      "name": "MessageHeader",
+      "description": "공통 메시지 헤더",
+      "isHeader": true,
+      "isType": true,
+      "fields": [
+        {
+          "id": "5c1f95c1697d253e1f1ae3703e49c1e7",
+          "name": "messageId",
+          "type": "uint16",
+          "count": "1",
+          "min": "0",
+          "max": "65535",
+          "unit": "",
+          "description": "메시지 식별자"
+        },
+        {
+          "id": "424703de8fe3e9d33e590d9752dbaac4",
+          "name": "sequence",
+          "type": "uint32",
+          "count": "1",
+          "min": "0",
+          "max": "4294967295",
+          "unit": "",
+          "description": "메시지 순서 번호"
+        },
+        {
+          "id": "33b22bc84e896b4750f284533e10adc6",
+          "name": "payloadLength",
+          "type": "uint16",
+          "count": "1",
+          "min": "0",
+          "max": "65535",
+          "unit": "byte",
+          "description": "본문 데이터 길이"
+        },
+        {
+          "id": "160e6fb711d04c682c3a5509d7983839",
+          "name": "timestamp",
+          "type": "uint64",
+          "count": "1",
+          "min": "0",
+          "max": "",
+          "unit": "ms",
+          "description": "메시지 생성 시각"
+        },
+        {
+          "id": "bc31ef3862276fbf77e185a4873a7606",
+          "name": "version",
+          "type": "uint8",
+          "count": "1",
+          "min": "0",
+          "max": "255",
+          "unit": "",
+          "description": "인터페이스 버전"
+        }
+      ]
+    },
+    {
+      "id": "4b388a6b6bd03dafd4de17152d792cb2",
+      "name": "StatusData",
+      "description": "일반 상태 데이터 예제",
+      "isType": true,
+      "isHeader": false,
+      "fields": [
+        {
+          "id": "dffe162ee6eb925845812cfbedd2b2a6",
+          "name": "header",
+          "type": "struct:717907ba3e4e4ccd5fad86a822c1e7b9",
+          "count": "1",
+          "min": "",
+          "max": "",
+          "unit": "",
+          "description": "공통 메시지 헤더"
+        },
+        {
+          "id": "0381f48c2841063a62e8f2cdbedf5ac0",
+          "name": "statusCode",
+          "type": "uint8",
+          "count": "1",
+          "min": "0",
+          "max": "255",
+          "unit": "",
+          "description": "상태 코드"
+        },
+        {
+          "id": "0473b231b8d1d9a035b7150acf388790",
+          "name": "temperature",
+          "type": "float32",
+          "count": "1",
+          "min": "-40",
+          "max": "125",
+          "unit": "°C",
+          "description": "온도"
+        },
+        {
+          "id": "0827c32986c4b1c4b33e3e7d58b70f8d",
+          "name": "enabled",
+          "type": "bool",
+          "count": "1",
+          "min": "0",
+          "max": "1",
+          "unit": "",
+          "description": "활성 상태"
+        }
+      ]
+    }
+  ]
+}

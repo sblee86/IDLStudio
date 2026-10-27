@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<icd project="Interface Project">
+  <struct name="MessageHeader" header="true" size="17" description="공통 메시지 헤더">
+    <field name="messageId" type="uint16" count="1" min="0" max="65535" unit="" offset="0" description="메시지 식별자" />
+    <field name="sequence" type="uint32" count="1" min="0" max="4294967295" unit="" offset="2" description="메시지 순서 번호" />
+    <field name="payloadLength" type="uint16" count="1" min="0" max="65535" unit="byte" offset="6" description="본문 데이터 길이" />
+    <field name="timestamp" type="uint64" count="1" min="0" max="" unit="ms" offset="8" description="메시지 생성 시각" />
+    <field name="version" type="uint8" count="1" min="0" max="255" unit="" offset="16" description="인터페이스 버전" />
+  </struct>
+  <struct name="StatusData" header="false" size="23" description="일반 상태 데이터 예제">
+    <field name="header" type="MessageHeader" count="1" min="" max="" unit="" offset="0" description="공통 메시지 헤더" />
+    <field name="statusCode" type="uint8" count="1" min="0" max="255" unit="" offset="17" description="상태 코드" />
+    <field name="temperature" type="float32" count="1" min="-40" max="125" unit="°C" offset="18" description="온도" />
+    <field name="enabled" type="bool" count="1" min="0" max="1" unit="" offset="22" description="활성 상태" />
+  </struct>
+</icd>

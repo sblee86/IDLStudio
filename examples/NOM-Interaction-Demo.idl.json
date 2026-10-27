@@ -1,0 +1,138 @@
+{
+  "format": "atelier-icd",
+  "version": 2,
+  "name": "NOM_Interaction_Demo",
+  "outputFormats": [
+    {
+      "id": "625cde9e353fb245677eaa4d6d4e60d0",
+      "name": "NOM interaction 원문",
+      "extension": "xml",
+      "header": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<icd project=\"{{project.name|xml}}\">\n{{types.xml}}",
+      "upper": "  <NOM:interaction name=\"{{struct.name|xml}}\" header=\"{{struct.isHeader}}\" size=\"{{struct.size}}\" description=\"{{struct.description|xml}}\">\n",
+      "body": "    <field name=\"{{field.name|xml}}\" type=\"{{field.type|xml}}\" count=\"{{field.count}}\" min=\"{{field.min|xml}}\" max=\"{{field.max|xml}}\" unit=\"{{field.unit|xml}}\" offset=\"{{field.offset}}\" description=\"{{field.description|xml}}\" />\n",
+      "lower": "  </NOM:interaction>\n",
+      "footer": "</icd>\n"
+    },
+    {
+      "id": "7973621e8b20d2450ddff2d1da5a2203",
+      "name": "NOM interaction 네임스페이스 선언",
+      "extension": "xml",
+      "header": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<icd xmlns:NOM=\"urn:example:nom\" project=\"{{project.name|xml}}\">\n{{types.xml}}",
+      "upper": "  <NOM:interaction name=\"{{struct.name|xml}}\" header=\"{{struct.isHeader}}\" size=\"{{struct.size}}\" description=\"{{struct.description|xml}}\">\n",
+      "body": "    <field name=\"{{field.name|xml}}\" type=\"{{field.type|xml}}\" count=\"{{field.count}}\" min=\"{{field.min|xml}}\" max=\"{{field.max|xml}}\" unit=\"{{field.unit|xml}}\" offset=\"{{field.offset}}\" description=\"{{field.description|xml}}\" />\n",
+      "lower": "  </NOM:interaction>\n",
+      "footer": "</icd>\n"
+    }
+  ],
+  "customTypes": [],
+  "structures": [
+    {
+      "id": "a08394ebd396ca67bdfea6a63f2c72fc",
+      "name": "MessageHeader",
+      "description": "공통 메시지 헤더",
+      "isHeader": true,
+      "isType": true,
+      "fields": [
+        {
+          "id": "07f7d3a5af00117b5e5eccaab76d578a",
+          "name": "messageId",
+          "type": "uint16",
+          "count": "1",
+          "min": "0",
+          "max": "65535",
+          "unit": "",
+          "description": "메시지 식별자"
+        },
+        {
+          "id": "7fb6e50044cdf839fea3f6274b511a58",
+          "name": "sequence",
+          "type": "uint32",
+          "count": "1",
+          "min": "0",
+          "max": "4294967295",
+          "unit": "",
+          "description": "메시지 순서 번호"
+        },
+        {
+          "id": "eb161d897733bdd57b08c8ec37b923de",
+          "name": "payloadLength",
+          "type": "uint16",
+          "count": "1",
+          "min": "0",
+          "max": "65535",
+          "unit": "byte",
+          "description": "본문 데이터 길이"
+        },
+        {
+          "id": "53ceffa6629092726aeb0371c2b59069",
+          "name": "timestamp",
+          "type": "uint64",
+          "count": "1",
+          "min": "0",
+          "max": "",
+          "unit": "ms",
+          "description": "메시지 생성 시각"
+        },
+        {
+          "id": "f7ac39bd15b0b4515107f6a1edb682ba",
+          "name": "version",
+          "type": "uint8",
+          "count": "1",
+          "min": "0",
+          "max": "255",
+          "unit": "",
+          "description": "인터페이스 버전"
+        }
+      ]
+    },
+    {
+      "id": "3fec36828f19240a68d268e009725e6e",
+      "name": "StatusData",
+      "description": "일반 상태 데이터 예제",
+      "isType": true,
+      "isHeader": false,
+      "fields": [
+        {
+          "id": "833c7b76d9742b9a469734fe889affdd",
+          "name": "header",
+          "type": "struct:a08394ebd396ca67bdfea6a63f2c72fc",
+          "count": "1",
+          "min": "",
+          "max": "",
+          "unit": "",
+          "description": "공통 메시지 헤더"
+        },
+        {
+          "id": "7c6a57f75c37d1e7da5f2494d140e257",
+          "name": "statusCode",
+          "type": "uint8",
+          "count": "1",
+          "min": "0",
+          "max": "255",
+          "unit": "",
+          "description": "상태 코드"
+        },
+        {
+          "id": "7eb9bf17ac6b1a0507db2f5c7fec44af",
+          "name": "temperature",
+          "type": "float32",
+          "count": "1",
+          "min": "-40",
+          "max": "125",
+          "unit": "°C",
+          "description": "온도"
+        },
+        {
+          "id": "7716e1951adf3b1260270a30d0ff0c0b",
+          "name": "enabled",
+          "type": "bool",
+          "count": "1",
+          "min": "0",
+          "max": "1",
+          "unit": "",
+          "description": "활성 상태"
+        }
+      ]
+    }
+  ]
+}
